@@ -1,0 +1,290 @@
+/* --- Romantic Theme (Centering & Scrolling Fixed) --- */
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px 5px rgba(255, 105, 180, 0.4); }
+    50% { box-shadow: 0 0 30px 10px rgba(255, 105, 180, 0.6); }
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    background-color: #2b0216;
+    background-image: 
+        radial-gradient(circle at 15% 20%, rgba(255, 105, 180, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 80% 10%, rgba(189, 105, 255, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(255, 182, 193, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 90% 70%, rgba(255, 105, 180, 0.3) 0%, transparent 40%);
+    font-family: 'Georgia', serif;
+}
+
+/* --- Envelope Styles (Romantic Version) --- */
+.envelope-wrapper {
+    perspective: 1000px;
+}
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.7s ease-in-out;
+    overflow: hidden;
+}
+.envelope:hover {
+    transform: translateY(-15px) rotateX(10deg);
+}
+.envelope.open {
+    transform: rotateY(180deg);
+    transition: transform 1s ease-in-out;
+}
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    transition: transform 0.6s 0.2s ease-out;
+}
+.envelope.open .letter {
+    transform: translateY(-100px) translateZ(20px);
+    transition: transform 0.6s 0.5s ease-out;
+}
+.envelope .pocket, .envelope .flap, .envelope .letter {
+    position: absolute;
+    border-radius: 5px;
+}
+.envelope .pocket {
+    width: 100%;
+    height: 100%;
+    background: #c1121f;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 2;
+}
+.envelope .flap {
+    width: 100%;
+    height: 100%;
+    background: #a40e19;
+    clip-path: polygon(0 0, 100% 0, 50% 55%);
+    transform-origin: top;
+    z-index: 3;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2) inset;
+}
+.envelope .letter {
+    top: 50%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    background: #fff0f3;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    z-index: 1;
+}
+.heart-seal {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 25px;
+    height: 25px;
+    background: linear-gradient(to top right, #e7c6b7, #f7d9cb);
+    z-index: 4;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.heart-seal::before, .heart-seal::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: inherit;
+    border-radius: 50%;
+}
+.heart-seal::before { top: -12.5px; left: 0; }
+.heart-seal::after { top: 0; left: -12.5px; }
+.click-text {
+    position: absolute;
+    top: 115%;
+    left: 50%;
+    transform: translateX(-50%) rotateY(180deg);
+    color: white;
+    font-size: 1.2em;
+    font-family: 'Helvetica', sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* --- Main Card Styles --- */
+.card {
+    position: absolute;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 700px;
+    z-index: 10;
+    transition: opacity 0.5s 1s, transform 0.5s 1s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: glow 5s infinite ease-in-out;
+    box-sizing: border-box;
+}
+.hidden {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+h1 { color: #a40e19; font-size: 2.8em; margin-bottom: 20px; }
+p { color: #444; font-size: 1.2em; line-height: 1.7; }
+.signature { margin-top: 40px; font-style: italic; color: #666; }
+
+/* --- Carousel Styles (Updated for Auto-Fit Images) --- */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background: #fff;
+}
+.carousel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.carousel-img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #fff;
+    transition: all 0.4s ease-in-out;
+}
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1.5em;
+    border-radius: 50%;
+    z-index: 11;
+    transition: background 0.3s ease;
+}
+.prev-btn:hover, .next-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+/* --- Memory Boxes --- */
+.memory-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 30px;
+    padding-bottom: 30px;
+}
+.memory-box {
+    width: 120px;
+    height: 100px;
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+    perspective: 1000px;
+}
+.memory-box.flipped {
+    transform: rotateY(180deg);
+}
+.memory-front, .memory-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+}
+.memory-front {
+    background: linear-gradient(135deg, #e63946, #ff6f91);
+    color: white;
+    font-size: 1.2em;
+}
+.memory-back {
+    background: #fff0f3;
+    color: #333;
+    font-size: 1em;
+    transform: rotateY(180deg);
+}
+
+/* --- Responsive Fixes --- */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+        overflow: auto;
+    }
+    .card {
+        width: 90%;
+        padding: 25px;
+        overflow-y: auto;
+        max-height: none;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    p {
+        font-size: 1em;
+        line-height: 1.5;
+    }
+    .carousel-container {
+        max-width: 100%;
+    }
+    .carousel-img {
+        max-height: 280px;
+    }
+    .memory-grid {
+        flex-direction: column;
+    }
+    .memory-box {
+        width: 100%;
+        max-width: 250px;
+        height: 120px;
+    }
+    .memory-front {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.6em;
+    }
+    p {
+        font-size: 0.9em;
+    }
+    .carousel-img {
+        max-height: 220px;
+    }
+    .signature {
+        font-size: 0.9em;
+    }
+    .memory-box {
+        max-width: 220px;
+        height: 100px;
+    }
+    .memory-front {
+        font-size: 1em;
+    }
+}

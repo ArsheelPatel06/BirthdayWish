@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Surprise for You!</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
+</head>
+<body>
+    <audio id="background-music" loop>
+        <source src="/happy-birthday-334876.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="envelope-wrapper">
+        <div id="envelope" class="envelope">
+            <div class="front">
+                <div class="flap"></div>
+                <div class="pocket"></div>
+                <div class="letter"></div>
+                <div class="hearts">
+                    <div class="heart-seal"></div>
+                </div>
+                <div class="click-text">Click to Open</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-card" class="card hidden">
+        <h1>Happy Birthday Anabia❤️!</h1>
+        
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <img src="/photos/pic1.jpeg" alt="Memory 1" class="carousel-img">
+                <img src="/photos/pic2.jpeg" alt="Memory 2" class="carousel-img">
+                <img src="/photos/pic3.jpeg" alt="Memory 3" class="carousel-img">
+                <img src="/photos/pic8.jpeg" alt="Memory 4" class="carousel-img">
+                <img src="/photos/pic5.jpeg" alt="Memory 5" class="carousel-img">
+                <img src="/photos/pic6.jpeg" alt="Memory 6" class="carousel-img">
+                <img src="/photos/pic7.jpeg" alt="Memory 6" class="carousel-img">
+            </div>
+            <button class="prev-btn">❮</button>
+            <button class="next-btn">❯</button>
+        </div>
+
+        <p>
+            REPLACE THIS TEXT: Write your main birthday message here. Make it heartfelt and wonderful!
+        </p>
+        
+        <div class="memory-grid">
+            <div class="memory-box" data-effect="hearts">
+                <div class="memory-front">🎁 Click Me</div>
+                <div class="memory-back">Sending you all the love 💛💛 in the world today!</div>
+            </div>
+            <div class="memory-box" data-effect="stars">
+                <div class="memory-front">🎁 Click Me</div>
+                <div class="memory-back">Because you're a star! Wishing you all the happiness in the universe.</div>
+            </div>
+        </div>
+        
+        <p class="signature">With all my love, <br> Arsheel </p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
