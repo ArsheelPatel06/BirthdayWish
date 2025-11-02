@@ -1,0 +1,13 @@
+# Use # for comments in TOML
+[build]
+  publish = "."
+  command = "echo 'No build command needed'"
+
+[dev]
+  command = "echo 'No dev command needed'"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
